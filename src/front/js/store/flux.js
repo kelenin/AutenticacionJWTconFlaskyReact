@@ -2,14 +2,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
+			/*demo: [
 				{
-					title: "FIRST",
+					title: "/login",
 					background: "white",
 					initial: "white"
 				},
 				{
-					title: "SECOND",
+					title: "/signup",
+					background: "white",
+					initial: "white"
+				}
+			]*/
+			demo: [
+				{
+					title: "Login",
+					ruta: "/login",
+					background: "white",
+					initial: "white"
+				},
+				{
+					title: "Signup",
+					ruta: "/signup",
 					background: "white",
 					initial: "white"
 				}
