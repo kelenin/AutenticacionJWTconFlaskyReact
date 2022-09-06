@@ -14,8 +14,6 @@ export const Signup = () =>{
     const [checked, setChecked] = React.useState(1);
 	let navigate = useNavigate();
 
-    const [shown, setShown] = React.useState(false);
-	const switchShown = () => setShown(!shown);
 
     const [shownconfir, setShownconfir] = React.useState(false);
 	const switchShownconfir = () => setShownconfir(!shownconfir);
@@ -41,10 +39,7 @@ export const Signup = () =>{
                     <Form.Group as={Col} sm={6} controlId="formGridPassword">
                         <Form.Label>Contraseña</Form.Label>
                         <div className="input-group">
-                            <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type={shown ? 'text' : 'password'} placeholder="Contraseña" />
-                            <div className="input-group-append">
-                                <button id="show_password" className="btn btn-primary" type="button" onClick={switchShown}> <span className={shown ? 'fa fa-eye-slash' : 'fa fa-eye'}></span> </button>
-                            </div>
+                            <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type='text' placeholder="Contraseña" />
                         </div>
                     </Form.Group>
                     

@@ -14,12 +14,6 @@ export const Login = () => {
 
 	let navigate = useNavigate();
 
-	const [shown, setShown] = React.useState(false);
-	const switchShown = () => setShown(!shown);
-
-  const [isOpenChangePasswordModal, setIsOpenChangePasswordModal] = React.useState(false);
-  const openChangePasswordModal = () => setIsOpenChangePasswordModal(true);
-  const closeChangePasswordModal = () => setIsOpenChangePasswordModal(false);
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -83,16 +77,13 @@ export const Login = () => {
                 <label>Clave:</label>
                 <div className="input-group">
                   <input
-                  type={shown ? 'text' : 'password'}
+                  type='text'
                   id="password"
                   className="form-control"
                   placeholder="Introduce la contraseña"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   />
-                  <div className="input-group-append">
-                      <button id="show_password" className="btn btn-primary" type="button" onClick={switchShown}> <span className={shown ? 'fa fa-eye-slash' : 'fa fa-eye'}></span> </button>
-                  </div>
                 </div>
                 <small id="passworderror" className="text-danger form-text">
                   {passwordError}
