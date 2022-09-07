@@ -20,7 +20,7 @@ export const Signup = () =>{
 
     const handleClick = (e) => {
         e.preventDefault();
-		actions.registro(identificacion,cedula,pnombre,papellido,usuario,email,password,checked);
+		actions.registro(email,password,checked);
 	}
 
     if(store.token && store.token!="" && store.token != undefined) navigate('/');
@@ -29,7 +29,7 @@ export const Signup = () =>{
         <div id="registro-web" className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Registrarse</h3>
+            <h3 className="Auth-form-title">Registro</h3>
             <div className="form-group mt-3">
                 <Row className="mb-3">
                     <Form.Group as={Col} sm={6} controlId="formGridEmail">

@@ -8,12 +8,10 @@ export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-    const [passwordError, setpasswordError] = useState("");
-    const [emailError, setemailError] = useState("");
-
+  const [passwordError, setpasswordError] = useState("");
+  const [emailError, setemailError] = useState("");
 
 	let navigate = useNavigate();
-
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -46,7 +44,6 @@ export const Login = () => {
     handleValidation();
 		actions.login(email, password);
 	};
-
   if (store.token && store.token != "" && store.token != undefined)navigate("/");
   return (
     <div className="Auth-form-container" id="login-div">
