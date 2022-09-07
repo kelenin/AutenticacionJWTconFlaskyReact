@@ -15,19 +15,13 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    search = User.query.filter_by(email=email).one_or_none()
 
-    if email != "test@gmail.com" or password != "test":
-        return jsonify({"msg": "Bad email or password"}), 401
-
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
-    #search = User.query.filter_by(email=email).one_or_none()
-
-    #if search != None and search.password==password:
-        #access_token = create_access_token(identity=email)
-        #return jsonify({"access_token":access_token, "user":search.serialize()}), 200
-    #else:
-        #return 'Las credenciales no coinciden', 404 
+    if search != None and search.password==password:
+        access_token = create_access_token(identity=email)
+        return jsonify({"access_token":access_token, "user":search.serialize()}), 200
+    else:
+        return 'Las credenciales no coinciden', 404 
 
 
 @api.route("/login", methods=["GET"])

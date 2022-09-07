@@ -8,40 +8,33 @@ export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-  const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
+  const [passwordError, setpasswordError] = useState(null);
+  const [emailError, setemailError] = useState(null);
 
 	let navigate = useNavigate();
 
-  const handleValidation = (event) => {
-    let formIsValid = true;
+  const handleValidation = () => {
 
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-      formIsValid = false;
-      setemailError("El correo electrónico es invalido.");
-      return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
-    }
-
-    /*if (!password.match(/^[a-zA-Z]{8,22}$/)) {
-      formIsValid = false;
-      setpasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
-      );
-      return false;
-    } else {
-      setpasswordError("");
-      formIsValid = true;
-    }*/
-
-    return formIsValid;
   };
 
 	const handleClick = (e) => {
 		e.preventDefault();
-    handleValidation();
+    //handleValidation();
+    if(!email.trim()){
+      setemailError('Datos vacíos en el email!')
+      return false;
+    }
+    
+    if(!password.trim()){
+      setpasswordError('Datos vacíos en el password!')
+      return false;
+    }
+    if(password.length < 6){
+      setpasswordError('El password debe contener 6 o más carácteres.')
+        return false;
+    }
+    setemailError(null)
+    setpasswordError(null)
 		actions.login(email, password);
 	};
   if (store.token && store.token != "" && store.token != undefined)navigate("/");
@@ -58,15 +51,12 @@ export const Login = () => {
                 <label>Correo Electrónico:</label>
                 <input
                   type="email"
-                  id="email"
                   className="form-control mt-1"
                   placeholder="Introduce el correo electrónico"
-                  autoComplete="off"
-                  aria-describedby="emailHelp"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                 <small id="emailHelp" className="text-danger form-text">
+                 <small className="text-danger form-text">
                   {emailError}
                 </small>
               </div>
@@ -75,7 +65,6 @@ export const Login = () => {
                 <div className="input-group">
                   <input
                   type='text'
-                  id="password"
                   className="form-control"
                   placeholder="Introduce la contraseña"
                   value={password}
